@@ -36,12 +36,12 @@ dashboardPage(
               plotOutput("distPlot2")
       ),
       
-      # Second tab content
+      # Third tab content
       tabItem(tabName = "scatterplot",
               plotOutput("distPlot3")
       ),
       
-      # Fifth tab content
+      # Fourth tab content
       tabItem(tabName = "table",
               dataTableOutput("table")
       )
