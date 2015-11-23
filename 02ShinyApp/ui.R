@@ -7,9 +7,9 @@ dashboardPage(
   ),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Crosstab", tabName = "crosstab", icon = icon("dashboard")),
-      menuItem("Barchart", tabName = "barchart", icon = icon("bar-chart-o")),
       menuItem("Scatter Plot", tabName = "scatterplot", icon = icon("th")),
+      menuItem("Barchart", tabName = "barchart", icon = icon("bar-chart-o")),
+      menuItem("Crosstab", tabName = "crosstab", icon = icon("dashboard")),
       menuItem("Table", tabName = "table", icon = icon("table"))
     )
   ),
@@ -30,14 +30,19 @@ dashboardPage(
               plotOutput("distPlot1")
       ),
       
+      
       # Second tab content
       tabItem(tabName = "barchart",
-              plotOutput("distPlot2")
+              plotOutput("distPlot2"),
+              h1("Analysis: "),
+              p("In this plot, we try to discover the average annual salary in each department. From the plot, we see that the jobs in Texas Department of Criminal Justice seems to get paid higher than the other departments. However, its average isn't as high as jobs are in Texas Department of Transportation. Also, there are more jobs offered in Texas Department of Criminal Justice than the others. The red reference lines represents the average of annual salary in each Department.")
       ),
       
       # Third tab content
       tabItem(tabName = "scatterplot",
-              plotOutput("distPlot3")
+              plotOutput("distPlot3"),
+              h1("Analysis: "),
+              p("From this scatterplot, we can tell that except Police Department, Fire Department, Waste Water, Law Department are clustering and do not have a clear relationship between Annual Salary and Gross Salary, other roles in the following agencies, Circuit Court, City Council, Community Relations, Company Audits, Company Controllers/ Communications, DFW-Administration etc. all share a high positive correlation coefficient and can be accurately modeled with a linear model.")
       ),
       
       # Fourth tab content
