@@ -27,7 +27,8 @@ require("extrafont")
 require("lubridate")
 ```
   
-#Next, we need to run the Texas Salaries R_ETL.R and Baltimore Salaries R_ETL.R to create the 2 tables on SQL server.
+#Next, we need to run the Texas Salaries R_ETL.R and Baltimore Salaries R_ETL.R to create the 2 tables on SQL server.  
+##First Table is about Texas Salaries dataset
 ![](Texas_salaries.png)
 CREATE TABLE Texas_Salaries (  
 -- Change table_name to the table name you want.  
@@ -42,7 +43,19 @@ annual_salary number(38,4),
 serialid number(38,4)  
 );
   
-
+##Second Table is about Baltimore Salaries dataset
+![](Baltimore.png)  
+CREATE TABLE Baltimore_Salary (  
+-- Change table_name to the table name you want.  
+ name varchar2(4000),  
+ jobtitle varchar2(4000),  
+ agencyid varchar2(4000),  
+ agency varchar2(4000),  
+ hiredate varchar2(4000),  
+ serialid varchar2(4000),  
+ annualsalary number(38,4),  
+ grosspay number(38,4)  
+ );  
+   
 #After we successfully uploaded the dataset onto Oracle, we now produce the 3 plots on the Shiny Application.
   
-##First Plot is a scatterplot.

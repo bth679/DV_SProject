@@ -5,6 +5,7 @@ require(ggplot2)
 require(dplyr)
 require(reshape2)
 require(shiny)
+require(DT)
 
 shinyServer(function(input, output) {
   
@@ -69,7 +70,7 @@ shinyServer(function(input, output) {
   TEXAS_SALARIES <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from TEXAS_SALARIES"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   df2 <- TEXAS_SALARIES %>% group_by(DEPARTMENT) %>% mutate(AVERAGE = mean(ANNUAL_SALARY)) %>% mutate(REF_LINE = mean(AVERAGE))
   
-  output$distPlot2 <- renderPlot(height=700, width=1000, {
+  output$distPlot2 <- renderPlot(height=600, width=900, {
     plot1 <- ggplot() + 
       coord_cartesian() + 
       coord_flip() +
@@ -98,6 +99,10 @@ shinyServer(function(input, output) {
   output$distPlot3 <- renderPlot(height=500, width=1000, {
     plot3 <- ggplot(data = df3, aes(x = ANNUALSALARY, y = GROSSPAY, color = AGENCY), width = 300, height = 300) + geom_point() + labs(title='Baltimore Salary Scatterplot\nANNUAL SALARY, GROSS PAY')
     plot3
+  })
+  
+  # Begin code for Fourth Tab:
+  output$table <- renderDataTable({datatable(df3())
   })
   
 })

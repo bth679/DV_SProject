@@ -1,5 +1,4 @@
 #ui.R
-
 require(shiny)
 require(shinydashboard)
 
@@ -9,9 +8,9 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Crosstab", tabName = "crosstab", icon = icon("dashboard")),
-      menuItem("Barchart", tabName = "barchart", icon = icon("th")),
+      menuItem("Barchart", tabName = "barchart", icon = icon("bar-chart-o")),
       menuItem("Scatter Plot", tabName = "scatterplot", icon = icon("th")),
-      menuItem("Table", tabName = "table", icon = icon("th"))
+      menuItem("Table", tabName = "table", icon = icon("table"))
     )
   ),
   dashboardBody(
