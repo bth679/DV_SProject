@@ -33,7 +33,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
             from baltimore_salary
             group by AGENCY, JOBTITLE)
             order by JOBTITLE;"
-           ')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', 
+           ')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', 
                               MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON', p1=KPI_Low_Max_value(), p2=KPI_Medium_Max_value()), verbose = TRUE)))
   })
   
@@ -49,7 +49,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
       labs(title='Baltimore Salaries Crosstab\n') +
       labs(x=paste("AGENCY"), y=paste("JOBTITLE")) +
       
-      layer(data=df1(), 
+      layer(data=df1, 
             mapping=aes(x=AGENCY, y=JOBTITLE, label=ANNUALSALARY), 
             stat="identity", 
             stat_params=list(), 
@@ -57,7 +57,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
             geom_params=list(colour="black"), 
             position=position_identity()
       ) +
-      layer(data=df1(), 
+      layer(data=df1, 
             mapping=aes(x=AGENCY, y=JOBTITLE, fill=KPI), 
             stat="identity", 
             stat_params=list(), 
@@ -74,7 +74,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
   
   #############Code for Barchart################
   # Begin code for Second Tab:
-  TEXAS_SALARIES <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from TEXAS_SALARIES"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+  TEXAS_SALARIES <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from TEXAS_SALARIES"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   df2 <- TEXAS_SALARIES %>% group_by(DEPARTMENT) %>% mutate(AVERAGE = mean(ANNUAL_SALARY)) %>% mutate(REF_LINE = mean(AVERAGE))
   
   output$distPlot2 <- renderPlot(height=600, width=900, {
@@ -101,7 +101,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
   ############Code for Scatterplot##################
   # Begin code for Third Tab:
   
-  df3 <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from baltimore_salary"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+  df3 <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from baltimore_salary"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   
   output$distPlot3 <- renderPlot(height=500, width=1000, {
     plot3 <- ggplot(data = df3, aes(x = ANNUALSALARY, y = GROSSPAY, color = AGENCY), width = 300, height = 300) + geom_point() + labs(title='Baltimore Salary Scatterplot\nANNUAL SALARY, GROSS PAY')
