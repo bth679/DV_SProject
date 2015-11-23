@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
   labelsize3 <- reactive({input$labelsize3})
 
   
-  df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= 
+df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= 
 "select AGNECY, JOBTITLE, ANNUALSALARY, KPI as RATIO, 
             case
             when kpi < "p1" then \\\'03 Low\\\'
@@ -33,13 +33,13 @@ shinyServer(function(input, output) {
             from baltimore_salary
             group by AGENCY, JOBTITLE)
             order by JOBTITLE;"
-            ')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', 
+           ')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', 
                               MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON', p1=KPI_Low_Max_value(), p2=KPI_Medium_Max_value()), verbose = TRUE)))
   })
   
-#  BALTIMORE_SALARY <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from BALTIMORE_SALARY"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+ #BALTIMORE_SALARY <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from BALTIMORE_SALARY"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   
-#  df1 <- BALTIMORE_SALARY %>% group_by(AGENCY, JOBTITLE) %>% mutate(KPI = ifelse(ANNUALSALARY <= KPI_Low_Max_value, '03 Low', ifelse(ANNUALSALARY <= KPI_Medium_Max_value, '02 Medium', '01 High')))
+ #df1 <- BALTIMORE_SALARY %>% group_by(AGENCY, JOBTITLE) %>% mutate(KPI = ifelse(ANNUALSALARY <= KPI_Low_Max_value, '03 Low', ifelse(ANNUALSALARY <= KPI_Medium_Max_value, '02 Medium', '01 High')))
 
   output$distPlot1 <- renderPlot(height=1000, width=2000,{          
     plot <- ggplot() + 
@@ -74,7 +74,7 @@ shinyServer(function(input, output) {
   
   #############Code for Barchart################
   # Begin code for Second Tab:
-  TEXAS_SALARIES <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from TEXAS_SALARIES"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+  TEXAS_SALARIES <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from TEXAS_SALARIES"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   df2 <- TEXAS_SALARIES %>% group_by(DEPARTMENT) %>% mutate(AVERAGE = mean(ANNUAL_SALARY)) %>% mutate(REF_LINE = mean(AVERAGE))
   
   output$distPlot2 <- renderPlot(height=600, width=900, {
@@ -98,10 +98,10 @@ shinyServer(function(input, output) {
       )
     plot1
   })
-  
+  ############Code for Scatterplot##################
   # Begin code for Third Tab:
   
-  df3 <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from baltimore_salary"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+  df3 <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from baltimore_salary"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_bth679', PASS='orcl_bth679', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   
   output$distPlot3 <- renderPlot(height=500, width=1000, {
     plot3 <- ggplot(data = df3, aes(x = ANNUALSALARY, y = GROSSPAY, color = AGENCY), width = 300, height = 300) + geom_point() + labs(title='Baltimore Salary Scatterplot\nANNUAL SALARY, GROSS PAY')
