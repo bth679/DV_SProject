@@ -1,8 +1,8 @@
 name: 02ShinyApp
 account: bryanho
 server: shinyapps.io
-bundleId: 317591
+bundleId: 317980
 url: https://bryanho.shinyapps.io/02ShinyApp
-when: 1448307571.01591
+when: 1448344682.23906
 asMultiple: FALSE
 asStatic: FALSE

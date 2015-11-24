@@ -59,3 +59,6 @@ CREATE TABLE Baltimore_Salary (
    
 #After we successfully uploaded the dataset onto Oracle, we now produce the 3 plots on the Shiny Application.
   
+##Here is the link to my deployed Shiny app  
+###https://bryanho.shinyapps.io/02ShinyApp
+

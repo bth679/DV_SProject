@@ -1,6 +1,7 @@
 #ui.R
 require(shiny)
 require(shinydashboard)
+require(leaflet)
 
 dashboardPage(
   dashboardHeader(
@@ -9,8 +10,7 @@ dashboardPage(
     sidebarMenu(
       menuItem("Scatter Plot", tabName = "scatterplot", icon = icon("th")),
       menuItem("Barchart", tabName = "barchart", icon = icon("bar-chart-o")),
-      menuItem("Crosstab", tabName = "crosstab", icon = icon("dashboard")),
-      menuItem("Table", tabName = "table", icon = icon("table"))
+      menuItem("Crosstab", tabName = "crosstab", icon = icon("dashboard"))
     )
   ),
   dashboardBody(
@@ -43,11 +43,6 @@ dashboardPage(
               plotOutput("distPlot3"),
               h1("Analysis: "),
               p("From this scatterplot, we can tell that except Police Department, Fire Department, Waste Water, Law Department are clustering and do not have a clear relationship between Annual Salary and Gross Salary, other roles in the following agencies, Circuit Court, City Council, Community Relations, Company Audits, Company Controllers/ Communications, DFW-Administration etc. all share a high positive correlation coefficient and can be accurately modeled with a linear model.")
-      ),
-      
-      # Fourth tab content
-      tabItem(tabName = "table",
-              dataTableOutput("table")
       )
     )
   )
