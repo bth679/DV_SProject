@@ -20,29 +20,13 @@ shinyServer(function(input, output) {
   labelsize3 <- reactive({input$labelsize3})
 
   
-<<<<<<< HEAD
-  df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= 
-"select AGENCY, JOBTITLE, ROUND(ANNUALSALARY, 2) as ANNUALSALARY, KPI as ratio, 
-case
-when kpi < "p1" then \\\'03 Low\\\'
-when kpi < "p2" then \\\'02 Medium\\\'
-else \\\'01 High\\\'
-end kpi
-from (select AGENCY, JOBTITLE,
-ANNUALSALARY,
-ANNUALSALARY as kpi 
-from baltimore_salary
-group by AGENCY, JOBTITLE);"
-')), httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', 
-                                                                                                   MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON', p1=KPI_Low_Max_value(), p2=KPI_Medium_Max_value()), verbose = TRUE)))
-  })
   
   #  BALTIMORE_SALARY <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from BALTIMORE_SALARY"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_pp9774', PASS='orcl_pp9774', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
   
   #  df1 <- BALTIMORE_SALARY %>% group_by(AGENCY, JOBTITLE) %>% mutate(KPI = ifelse(ANNUALSALARY <= KPI_Low_Max_value, '03 Low', ifelse(ANNUALSALARY <= KPI_Medium_Max_value, '02 Medium', '01 High')))
   
-  output$distPlot1 <- renderPlot({ 
-=======
+
+
 df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("\n", " ", 'skipper.cs.utexas.edu:5001/rest/native/?query= 
 "select AGNECY, JOBTITLE, ANNUALSALARY, KPI as RATIO, 
             case
@@ -65,7 +49,7 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
  #df1 <- BALTIMORE_SALARY %>% group_by(AGENCY, JOBTITLE) %>% mutate(KPI = ifelse(ANNUALSALARY <= KPI_Low_Max_value, '03 Low', ifelse(ANNUALSALARY <= KPI_Medium_Max_value, '02 Medium', '01 High')))
 
   output$distPlot1 <- renderPlot(height=1000, width=2000,{          
->>>>>>> 38d5662d13d90ffc5edf2acecdf325b17f0e0f8a
+
     plot <- ggplot() + 
       coord_cartesian() + 
       scale_x_discrete() +
@@ -89,11 +73,8 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
             geom_params=list(alpha=rv$alpha), 
             position=position_identity()
       ) + 
-<<<<<<< HEAD
-      plot
-=======
     plot
->>>>>>> 38d5662d13d90ffc5edf2acecdf325b17f0e0f8a
+
   }) 
   
   observeEvent(input$clicks, {
@@ -141,3 +122,5 @@ df1 <- eventReactive(input$clicks1, {data.frame(fromJSON(getURL(URLencode(gsub("
   })
   
 })
+  
+  
