@@ -2,8 +2,10 @@
 require(shiny)
 require(shinydashboard)
 
-dashboardPage(
-  dashboardHeader(
+
+dashboardPage( skin = "red",
+  dashboardHeader(title = "Shiny Project - Texas vs. Baltimore Salaries",
+                  titleWidth = 450
   ),
   dashboardSidebar(
     sidebarMenu(
