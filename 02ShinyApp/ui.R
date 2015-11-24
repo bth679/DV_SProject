@@ -3,8 +3,10 @@ require(shiny)
 require(shinydashboard)
 require(leaflet)
 
-dashboardPage(
-  dashboardHeader(
+
+dashboardPage( skin = "red",
+  dashboardHeader(title = "Shiny Project - Texas vs. Baltimore Salaries",
+                  titleWidth = 450
   ),
   dashboardSidebar(
     sidebarMenu(
